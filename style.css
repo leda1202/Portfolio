@@ -1,0 +1,220 @@
+*{
+    margin: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   
+}
+
+header{
+    position: relative;
+    z-index: 20;
+    background-size: cover;
+    width: 100%;
+    height: 70vh;
+    background-image: url('./img/Black\ Grey\ Aqua\ Grunge\ Gaming\ YouTube\ Banner.png');
+    background-size: cover;
+}
+
+header h2{
+    -webkit-text-stroke: black 3px;
+    font-size: 20vw;
+    margin-left: 40px;
+    position: absolute;
+    z-index: 1002;
+    color: white;
+}
+
+#clip{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(99, 58, 203)  ;
+    clip-path: polygon(79% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+
+#skills{
+    border-top: 5px solid rgb(94, 96, 213);
+    height: 300px;
+    background-color: rgb(27, 26, 26);
+}
+html, body{
+    overflow-x: hidden;
+}
+
+
+#links{
+    height: 500px;
+    background-color: rgb(90, 90, 192);
+}
+
+#skillbox{
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    display: flex;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    height: 0px;
+    margin-top: 20px;
+    background-color: rgb(42, 45, 45);
+  }
+  
+
+  ::-webkit-scrollbar-track {
+    background-color: #3769ff00;
+ 
+  }
+  
+ 
+  ::-webkit-scrollbar-thumb {
+    background: rgb(0, 30, 255);
+    border-radius: 10px;
+  }
+
+#skillbox img{
+    width: 90px;
+}
+#align h2{
+    width: 100%;
+    font-size: 400%;
+}
+
+#skillset{
+    display: flex;
+  
+}
+#darken{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(27, 26, 26, 0.697);
+}
+header img{
+    width: 20px;
+    z-index: 109;
+    position: absolute;
+    width: 300px;
+    right: 0;
+    bottom: 0px;
+}
+ /*Copyright - 2025 satyamchaudharydev (satyam) 
+*/
+.button {
+  margin-top: 100px;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.button {
+    --border-right: 6px;
+    --text-stroke-color: rgba(13, 13, 13, 0.6);
+    --animation-color: #3769ff;
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: 15vw;
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+.hover-text {
+    animation: blues 6s ease-in-out infinite alternate;
+    z-index: 101;
+    position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+
+ @keyframes blues {
+    20%{
+        width: 100%;
+        filter: drop-shadow(0 0 23px var(--animation-color))
+    }
+    100%{
+        width: 100%;
+        filter: drop-shadow(0 0 23px var(--animation-color))
+    }
+}
+
+@media  (max-width: 768px) {
+    
+#skillbox{
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 20px;
+}
+
+#skills{
+    height: 400px;
+}
+
+}
+
+/*Copyright - 2025 gharsh11032000 (Harsh Gupta) */
+.card {
+ width: 290px;
+ height: 354px;
+ background-color: blueviolet;
+ border-radius: 20px;
+ transition: all .3s;
+ box-shadow: 10px 10px 90px 21px rgba(0, 0, 0, 0.3);
+ animation: rainbow 2s ease-in infinite alternate;
+}
+
+.card2 {
+    width: 290px;
+    height: 354px;
+    background-color: #1a1a1a;
+    border-radius:20px;
+    transition: all .2s;
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+#analign{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+@keyframes rainbow {
+    0%{
+       background-color: #4a094c;
+    }
+    100%{
+        background-color: #3700ff;
+    }
+}
+
+
+.card2 img{
+ width: 50px;
+ margin-top: 20px;
+}
+.card2 a{
+    margin-top: 20px;
+    align-self: center;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 650;
+}
