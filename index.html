@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full select-none bg-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R☰GT — Roblox Systems Architect & Game Developer</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Portfolio of R☰GT (r3g._ / Ri/ch) — Roblox Game Developer & Systems Architecture Specialist with 1.8M+ visits.">
+  <meta property="og:title" content="R☰GT — Roblox Developer">
+  <meta property="og:description" content="Roblox Systems Architecture, 1.8M+ Total Visits, 6K Peak CCU.">
+  <meta property="og:image" content="imgs/logo.png">
+  <link rel="icon" type="image/png" href="imgs/logo.png">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            base: '#000000',
+            robloxBlue: '#0066FF',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Ambient Spotlight that follows cursor */
+    .spotlight {
+      background: radial-gradient(
+        750px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 0.045),
+        transparent 50%
+      );
+    }
+
+    /* Video Banner Background with blend */
+    .bg-video-container {
+      mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 80%);
+    }
+
+    /* Smooth glow effects */
+    .logo-glow {
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.35));
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .logo-container:hover .logo-glow {
+      filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.8));
+      transform: scale(1.03) rotate(-1deg);
+    }
+
+    .verified-badge {
+      filter: drop-shadow(0 0 14px rgba(0, 102, 255, 0.65));
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    }
+
+    .verified-badge:hover {
+      transform: scale(1.12) rotate(6deg);
+      filter: drop-shadow(0 0 22px rgba(0, 102, 255, 0.95));
+    }
+
+    .subtle-glow {
+      text-shadow: 0 0 32px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Subtle background grid pattern */
+    .bg-grid {
+      background-size: 48px 48px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Smooth breathing animations */
+    @keyframes breathe {
+      0%, 100% { opacity: 0.14; transform: scale(1); }
+      50% { opacity: 0.26; transform: scale(1.08); }
+    }
+    .ambient-glow {
+      animation: breathe 8s ease-in-out infinite;
+    }
+
+    /* Glass card border shimmer */
+    .glass-panel {
+      background: rgba(10, 10, 10, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-panel:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+  </style>
+</head>
+<body class="relative flex flex-col justify-between p-5 sm:p-8 md:p-12 antialiased selection:bg-white selection:text-black">
+
+  <!-- Interactive Cursor Spotlight -->
+  <div id="spotlight" class="spotlight pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"></div>
+
+  <!-- Background Subtle Grid -->
+  <div class="bg-grid pointer-events-none fixed inset-0 z-0 opacity-70"></div>
+
+  <!-- Atmospheric Background Video (from imgs/Banner video.mp4) -->
+  <div class="pointer-events-none fixed inset-0 z-0 flex items-center justify-center overflow-hidden opacity-35 bg-video-container">
+    <video
+      id="bg-video"
+      class="min-h-full min-w-full object-cover mix-blend-screen contrast-125 brightness-90"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto">
+      <source src="imgs/Banner%20video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Center Ambient Light Burst -->
+  <div class="ambient-glow pointer-events-none fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-white rounded-full blur-[150px] opacity-15 -z-10"></div>
+
+  <!-- TOP HEADER: Status, Badges & Video Audio Control -->
+  <header class="relative z-20 flex items-center justify-between w-full max-w-6xl mx-auto">
+    <!-- Availability Indicator -->
+    <div class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-neutral-900 bg-neutral-950/80 backdrop-blur-md">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+      </span>
+      <span class="text-[10.5px] sm:text-[11px] uppercase tracking-[0.2em] text-neutral-300 font-mono">Available for projects</span>
+    </div>
+
+    <!-- Header Right: 100% Discord Badge + Sound/Banner Video Toggle -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Video Audio Toggle Button -->
+      <button
+        id="video-sound-toggle"
+        class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-800 bg-neutral-950/80 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all text-xs font-mono"
+        title="Toggle Banner Video Sound">
+        <svg id="sound-icon-muted" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+        <svg id="sound-icon-unmuted" class="w-3.5 h-3.5 hidden text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span class="hidden sm:inline text-[11px]">Audio</span>
+      </button>
+
+      <!-- 100% Status Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-800/90 bg-neutral-950/80 backdrop-blur-md text-xs text-neutral-300 font-mono">
+        <span class="text-xs">💯</span>
+        <span>100%</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN HERO SECTION -->
+  <main class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center my-auto py-10 sm:py-14">
+    
+    <!-- ACTUAL LOGO: imgs/logo.png with pristine mix-blend and dynamic lighting -->
+    <div class="logo-container group relative mb-8 cursor-pointer select-none" id="logo-card" title="R☰GT">
+      <div class="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center">
+        <!-- Ambient Underglow -->
+        <div class="absolute inset-2 bg-white/10 rounded-full blur-2xl group-hover:bg-white/25 transition-all duration-500 pointer-events-none"></div>
+        
+        <!-- The actual user logo asset -->
+        <img
+          src="imgs/logo.png"
+          alt="R☰GT Official Logo"
+          class="logo-glow relative z-10 w-full h-full object-contain mix-blend-screen pointer-events-none"
+          loading="eager"
+        />
+      </div>
+    </div>
+
+    <!-- Name & Official Roblox Verified Badge -->
+    <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3">
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight subtle-glow">
+        R☰GT
+      </h1>
+      
+      <!-- ACTUAL Roblox Verified Badge: imgs/verified.png -->
+      <div class="relative group shrink-0 flex items-center justify-center cursor-help">
+        <img
+          src="imgs/verified.png"
+          alt="Roblox Verified Badge"
+          class="verified-badge w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain"
+          loading="eager"
+        />
+        <!-- Tooltip -->
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-md bg-neutral-900/95 border border-neutral-700/80 text-[11px] font-mono text-neutral-200 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-xl">
+          Roblox Verified Developer
+          <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-neutral-900"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Handles & Role Description -->
+    <p class="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider mb-8 max-w-lg">
+      <span class="text-neutral-200 font-medium">r3g._</span>
+      <span class="text-neutral-600 px-2">&bull;</span>
+      <span class="text-neutral-200 font-medium">Ri/ch</span>
+      <span class="text-neutral-600 px-2">&bull;</span>
+      <span class="text-neutral-400">Roblox Game Developer & Systems Architecture</span>
+    </p>
+
+    <!-- STATS COUNTERS: Glassmorphic panel with dynamic counting -->
+    <div class="w-full max-w-2xl glass-panel rounded-2xl py-6 sm:py-8 px-4 my-2 transition-all duration-300">
+      <div class="grid grid-cols-3 divide-x divide-neutral-800/80">
+        
+        <!-- Stat 1: Total Visits -->
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <div class="flex items-baseline">
+            <span class="counter text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight subtle-glow" data-target="1.8" data-prefix="" data-suffix="M+">
+              1.8M+
+            </span>
+          </div>
+          <span class="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mt-2">
+            Total Visits
+          </span>
+        </div>
+
+        <!-- Stat 2: Peak CCU -->
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <div class="flex items-baseline">
+            <span class="counter text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight subtle-glow" data-target="6" data-prefix="" data-suffix="K">
+              6K
+            </span>
+          </div>
+          <span class="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mt-2">
+            Peak CCU
+          </span>
+        </div>
+
+        <!-- Stat 3: Active Players -->
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <div class="flex items-baseline">
+            <span class="counter text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight subtle-glow" data-target="3400" data-format="comma" data-prefix="" data-suffix="">
+              3,400
+            </span>
+          </div>
+          <span class="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mt-2">
+            Active
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tech Specialization Badges -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mt-5 mb-3 max-w-xl">
+      <span class="px-2.5 py-1 rounded-full border border-neutral-900 bg-neutral-950/70 text-[10px] sm:text-[11px] font-mono text-neutral-400">Luau</span>
+      <span class="px-2.5 py-1 rounded-full border border-neutral-900 bg-neutral-950/70 text-[10px] sm:text-[11px] font-mono text-neutral-400">Networking & Sync</span>
+      <span class="px-2.5 py-1 rounded-full border border-neutral-900 bg-neutral-950/70 text-[10px] sm:text-[11px] font-mono text-neutral-400">DataStore Architecture</span>
+      <span class="px-2.5 py-1 rounded-full border border-neutral-900 bg-neutral-950/70 text-[10px] sm:text-[11px] font-mono text-neutral-400">Memory & Profiling</span>
+    </div>
+
+    <!-- Interactive Call To Actions -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
+      <!-- Discord Copy Button -->
+      <button
+        id="copy-btn"
+        class="group relative flex items-center gap-2.5 px-6 py-3 rounded-full border border-neutral-800 bg-neutral-950 text-xs font-mono tracking-wider hover:border-neutral-200 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] active:scale-95">
+        <!-- Discord SVG Icon -->
+        <svg class="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        <span id="btn-label">Discord: r3g._</span>
+        <span class="text-[10px] text-neutral-500 group-hover:text-neutral-400 uppercase tracking-widest pl-1 font-mono">Copy</span>
+      </button>
+
+      <!-- Roblox External Link Button -->
+      <a
+        href="https://www.roblox.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex items-center gap-1.5 px-6 py-3 rounded-full border border-neutral-900 bg-neutral-950/60 text-xs font-mono tracking-wider text-neutral-400 hover:text-white hover:border-neutral-700 hover:bg-neutral-900 transition-all duration-300">
+        <span>Roblox Profile</span>
+        <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM FOOTER -->
+  <footer class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 w-full max-w-6xl mx-auto pt-4 border-t border-neutral-900/60 text-[11px] font-mono text-neutral-500">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-neutral-700"></span>
+      <span>ROBLOX SYSTEMS ARCHITECTURE</span>
+    </div>
+    
+    <div class="flex items-center gap-4 text-neutral-500">
+      <span class="hover:text-neutral-300 transition-colors">EST. 2024</span>
+      <span>&bull;</span>
+      <span class="tracking-widest text-neutral-400 font-semibold">R☰GT</span>
+    </div>
+  </footer>
+
+  <!-- Toast Notification on Copy -->
+  <div
+    id="toast"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white text-black px-5 py-2.5 rounded-full font-mono text-xs font-medium tracking-wide shadow-[0_0_30px_rgba(255,255,255,0.3)] opacity-0 translate-y-3 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
+    <svg class="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Copied <strong class="font-bold">r3g._</strong> to clipboard!</span>
+  </div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Cursor Spotlight tracking
+    const spotlight = document.getElementById('spotlight');
+    window.addEventListener('pointermove', (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+
+    // 3D Tilt on Logo
+    const logoCard = document.getElementById('logo-card');
+    if (logoCard) {
+      logoCard.addEventListener('mousemove', (e) => {
+        const rect = logoCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const tiltX = (y / (rect.height / 2)) * -12;
+        const tiltY = (x / (rect.width / 2)) * 12;
+        logoCard.style.transform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.04, 1.04, 1.04)`;
+      });
+
+      logoCard.addEventListener('mouseleave', () => {
+        logoCard.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    // Video Sound Toggle
+    const bgVideo = document.getElementById('bg-video');
+    const soundToggle = document.getElementById('video-sound-toggle');
+    const mutedIcon = document.getElementById('sound-icon-muted');
+    const unmutedIcon = document.getElementById('sound-icon-unmuted');
+
+    if (soundToggle && bgVideo) {
+      soundToggle.addEventListener('click', () => {
+        bgVideo.muted = !bgVideo.muted;
+        if (bgVideo.muted) {
+          mutedIcon.classList.remove('hidden');
+          unmutedIcon.classList.add('hidden');
+        } else {
+          mutedIcon.classList.add('hidden');
+          unmutedIcon.classList.remove('hidden');
+          bgVideo.play();
+        }
+      });
+    }
+
+    // Discord Copy to Clipboard with Feedback
+    const discordHandle = 'r3g._';
+    const copyBtn = document.getElementById('copy-btn');
+    const btnLabel = document.getElementById('btn-label');
+    const toast = document.getElementById('toast');
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(discordHandle);
+        } else {
+          const input = document.createElement('textarea');
+          input.value = discordHandle;
+          input.style.position = 'fixed';
+          input.style.opacity = '0';
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+        }
+
+        // Visual feedback on button
+        btnLabel.textContent = 'Copied!';
+        copyBtn.classList.add('border-white', 'text-white');
+
+        // Toast feedback
+        toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        setTimeout(() => {
+          btnLabel.textContent = `Discord: ${discordHandle}`;
+          copyBtn.classList.remove('border-white', 'text-white');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+        }, 2200);
+      } catch (err) {
+        console.error('Clipboard error:', err);
+      }
+    });
+
+    // Subtle Counter Up Animation
+    const counters = document.querySelectorAll('.counter');
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const prefix = counter.getAttribute('data-prefix') || '';
+        const format = counter.getAttribute('data-format');
+        const duration = 1400; // ms
+        const startTime = performance.now();
+
+        const updateCount = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          const currentVal = target * easeProgress;
+
+          let formattedVal = '';
+          if (format === 'comma') {
+            formattedVal = Math.floor(currentVal).toLocaleString();
+          } else if (Number.isInteger(target)) {
+            formattedVal = Math.floor(currentVal);
+          } else {
+            formattedVal = currentVal.toFixed(1);
+          }
+
+          counter.textContent = `${prefix}${formattedVal}${suffix}`;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            if (format === 'comma') {
+              counter.textContent = `${prefix}${Math.floor(target).toLocaleString()}${suffix}`;
+            } else {
+              counter.textContent = `${prefix}${target}${suffix}`;
+            }
+          }
+        };
+
+        requestAnimationFrame(updateCount);
+      });
+    };
+
+    // Trigger on load
+    window.addEventListener('DOMContentLoaded', animateCounters);
+  </script>
+</body>
+</html>
